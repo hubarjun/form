@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact - My 2 Page Site</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+      }
+      /* Navigation Bar */
+      nav {
+        background: #333;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        animation: slideDown 1s ease forwards;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 18px;
+        position: relative;
+      }
+      nav a::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0%;
+        background: yellow;
+        transition: 0.3s;
+        position: absolute;   
+        bottom: -5px;
+        left: 0;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      /* Form Styling */
+      .form-container {
+        max-width: 400px;
+        margin: 50px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="form-container">
+      <form id="contactForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" />
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" />
+
+        <label for="message">Message:</label>
+        <textarea id="message" rows="4"></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          let name = document.getElementById("name").value.trim();
+          let email = document.getElementById("email").value.trim();
+          let message = document.getElementById("message").value.trim();
+
+          if (!name || !email || !message) {
+            alert("All fields must be filled!");
+            return;
+          }
+
+          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (!emailPattern.test(email)) {
+            alert("Please enter a valid email!");
+            return;
+          }
+
+          alert("Thank you for contacting us!");
+          this.reset();
+        });
+    </script>
+  </body>
+</html>

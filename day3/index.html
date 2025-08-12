@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home - My 2 Page Site</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f0f4f8;
+        transition: background-color 0.5s ease;
+      }
+      /* Navigation Bar */
+      nav {
+        background: #333;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        animation: slideDown 1s ease forwards;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 18px;
+        position: relative;
+      }
+      nav a::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0%;
+        background: yellow;
+        transition: 0.3s;
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+      }
+      nav a:hover::after {
+        width: 100%;
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      /* Content */
+      .container {
+        text-align: center;
+        padding: 50px;
+      }
+      h1 {
+        animation: fadeIn 2s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      button {
+        padding: 10px 20px;
+        margin-top: 20px;
+        background: #4caf50;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+      <h1>Welcome to My Website</h1>
+      <p>
+        This is the home page of our two-page site. Enjoy the animations and
+        features!
+      </p>
+      <button onclick="changeBackground()">Change Background Color</button>
+    </div>
+
+    <script>
+      function changeBackground() {
+        const colors = ["#f0f4f1", "#ffe4e1", "#e0ffe4", "#e6e6fa", "#fffacd"];
+        document.body.style.backgroundColor =
+          colors[Math.floor(Math.random() * colors.length)];
+      }
+    </script>
+  </body>
+</html>
