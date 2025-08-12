@@ -1,117 +1,293 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Student Registration Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Page</title>
     <style>
+      /* ===== CSS Variables for easy theming ===== */
+      :root {
+        --primary-color: #be1494;
+        --primary-dark: #1b5f8c;
+        --bg-color: rgb(218, 16, 160);
+        --form-bg: rgb(209, 169, 188);
+        --white: #fff;
+        --text-color: #333;
+      }
+
+      /* ===== Body Styling ===== */
       body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f4f8;
         margin: 0;
-        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--bg-color),
+          var(--primary-dark)
+        );
+        animation: fadeIn 1.5s ease-in-out;
       }
+
+      /* ===== Form Container ===== */
+      .form-container {
+        background: var(--form-bg);
+        width: 90%;
+        max-width: 500px;
+        margin: 40px auto;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Decorative effect with pseudo-elements */
+      .form-container::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 150px;
+        height: 150px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        opacity: 0.3;
+      }
+
       h1 {
+        background: var(--white);
+        padding: 10px;
+        border-radius: 5px;
         text-align: center;
-        color: #333;
-        margin-top: 20px;
+        animation: slideDown 1s ease-in-out;
       }
-      form {
-        max-width: 400px;
-        background: #fff;
-        padding: 20px;
-        margin: 30px auto;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+      /* ===== Form Elements ===== */
+      .form-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
       }
+
       label {
-        display: block;
-        margin: 10px 0 5px;
+        width: 150px;
         font-weight: bold;
+        color: var(--text-color);
       }
+
       input,
       select {
-        width: 100%;
+        flex: 1;
         padding: 8px;
-        border-radius: 4px;
+        border-radius: 5px;
         border: 1px solid #ccc;
-        box-sizing: border-box;
+        outline: none;
+        transition: all 0.3s ease;
       }
-      button {
-        margin-top: 15px;
-        width: 100%;
-        padding: 10px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 4px;
+
+      input:focus,
+      select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 5px var(--primary-color);
+      }
+
+      /* Radio button layout */
+      .radio-group {
+        display: flex;
+        gap: 15px;
+      }
+
+      /* ===== Submit Button ===== */
+      .key {
         font-size: 16px;
         cursor: pointer;
+        padding: 10px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 100%;
+        transition: background 0.3s ease, transform 0.2s ease;
       }
-      button:hover {
-        background-color: #45a049;
+
+      .key:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+      }
+
+      /* ===== Responsive ===== */
+      @media (max-width: 600px) {
+        .form-group {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        label {
+          width: 100%;
+          margin-bottom: 5px;
+        }
+        input,
+        select {
+          width: 100%;
+        }
+      }
+
+      /* ===== Animations ===== */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideDown {
+        from {
+          transform: translateY(-30px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>Student Registration</h1>
+    <div class="form-container">
+      <center>
+        <img
+          src="https://www.francisxavier.ac.in/cs-content/themes/fxec/images/logo.png"
+          width="300"
+          alt="College Logo"
+        />
+        <h1><strong>REGISTER FORM</strong></h1>
+      </center>
 
-    <form id="regForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" />
+      <form id="registerForm">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" name="name" required />
+        </div>
 
-      <label for="email">Email:</label>
-      <input type="text" id="email" />
+        <div class="form-group">
+          <label>Degree</label>
+          <div class="radio-group">
+            <input type="radio" name="deg" value="B.Tech" required /> B.Tech
+            <input type="radio" name="deg" value="B.E" required /> B.E
+          </div>
+        </div>
 
-      <label for="dept">Department:</label>
-      <select id="dept">
-        <option value="">--Select--</option>
-        <option value="CSE">CSE</option>
-        <option value="IT">IT</option>
-        <option value="ECE">ECE</option>
-        <option value="EEE">EEE</option>
-      </select>
+        <div class="form-group">
+          <label>Department</label>
+          <select name="dept" required>
+            <option value="">--Select--</option>
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="AIDS">AIDS</option>
+            <option value="CSBS">CSBS</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="CIVIL">CIVIL</option>
+            <option value="MECH">MECH</option>
+          </select>
+        </div>
 
-      <label for="year">Year:</label>
-      <select id="year">
-        <option value="">--Select--</option>
-        <option value="1">1st Year</option>
-        <option value="2">2nd Year</option>
-        <option value="3">3rd Year</option>
-        <option value="4">4th Year</option>
-      </select>
+        <div class="form-group">
+          <label>D.O.B</label>
+          <input type="date" name="dob" required />
+        </div>
 
-      <label for="project">Project Title:</label>
-      <input type="text" id="project" />
+        <div class="form-group">
+          <label>Blood Group</label>
+          <select name="bg" required>
+            <option value="">--Select--</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+        </div>
 
-      <button type="submit">Register</button>
-    </form>
+        <div class="form-group">
+          <label>Register No</label>
+          <input type="number" name="reg" required />
+        </div>
+
+        <div class="form-group">
+          <label>Mobile No</label>
+          <input type="number" name="mnumber" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="mail" required />
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="pass" required />
+        </div>
+
+        <div class="form-group submit-btn">
+          <input type="submit" value="Register" class="key" />
+        </div>
+      </form>
+    </div>
 
     <script>
+      // Welcome alert
+      window.addEventListener("load", () => {
+        alert("Welcome to the Registration Page!");
+      });
+
+      // Form validation
       document
-        .getElementById("regForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+        .getElementById("registerForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-          let name = document.getElementById("name").value.trim();
-          let email = document.getElementById("email").value.trim();
-          let dept = document.getElementById("dept").value;
-          let year = document.getElementById("year").value;
-          let project = document.getElementById("project").value.trim();
+          let formData = new FormData(this);
+          let userData = {};
 
-          if (!name || !email || !dept || !year || !project) {
-            alert("All fields must be filled!");
+          for (let [key, value] of formData.entries()) {
+            userData[key] = value;
+          }
+
+          // Mobile number validation
+          if (userData.mnumber.length !== 10) {
+            alert("Mobile number must be exactly 10 digits.");
             return;
           }
 
-          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-          if (!emailPattern.test(email)) {
-            alert("Please enter a valid email!");
-            return;
-          }
-
-          alert("Registration Successful");
+          alert(
+            "Registration Successful!\n\n" + JSON.stringify(userData, null, 2)
+          );
           this.reset();
         });
+
+      // Dynamic "Click Me" feature
+      const clickBtn = document.createElement("button");
+      clickBtn.textContent = "Click Me!";
+      clickBtn.className = "key";
+      document.querySelector(".form-container").appendChild(clickBtn);
+
+      clickBtn.addEventListener("click", () => {
+        document.body.style.background =
+          linear - gradient(`135deg, ${getRandomColor()}, ${getRandomColor()}`);
+      });
+
+      function getRandomColor() {
+        let letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
     </script>
   </body>
 </html>
